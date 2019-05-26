@@ -6,6 +6,8 @@ import com.common.service.UserService;
 import com.provider.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by xkx on 2019/5/12.
  */
@@ -15,8 +17,9 @@ class UserImpl implements UserService{
     protected UserMapper userMapper;
 
     @Override
-    public User findUser() {
+    public List<User> findUser() {
         System.out.println("服务端访问成功！");
-        return userMapper.getOne(1L);
+        //return userMapper.getOne(1L);
+        return userMapper.getAll();
     }
 }
