@@ -1,5 +1,6 @@
 package com.provider.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.common.domain.User;
 import org.apache.ibatis.annotations.*;
 
@@ -9,8 +10,8 @@ import java.util.List;
  * Created by xkx on 2019/5/12.
  */
 @Mapper
-public interface UserMapper {
-    @Results(id = "userMap", value = {
+public interface UserMapper extends BaseMapper<User> {
+   /* @Results(id = "userMap", value = {
             @Result(column = "id", property = "id"),
             @Result(column = "name", property = "name"),
             @Result(column = "age", property = "age"),
@@ -20,5 +21,6 @@ public interface UserMapper {
 
     @Select("SELECT * FROM u_user t WHERE t.id = #{id}")
     @ResultMap("userMap")
-    User getOne(Long id);
+    User getOne(Long id);*/
+   List<User> listAll();
 }
