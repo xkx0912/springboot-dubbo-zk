@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.common.domain.User;
 import com.common.service.UserService;
 import com.provider.mapper.UserMapper;
+import com.provider.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +21,12 @@ class UserImpl extends ServiceImpl<UserMapper,User> implements UserService {
     protected UserMapper userMapper;
 
     @Override
+    @Cacheable(value = "findAll")
     public List<User> findUser() {
         System.out.println("服务端访问成功！");
-        //return userMapper.listAll();
-        return userMapper.selectList(null);
+        List<User> users = new ArrayList<User>();
+        System.out.println("查询数据库...");
+        users = userMapper.selectList(null);
+        return users;
     }
 }
